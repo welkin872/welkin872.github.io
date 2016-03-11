@@ -2,7 +2,7 @@
 
 title:            WeLKiN's GitHub Page
 locale:           en_US
-url:              //welkin872.github.io
+url:              https://welkin872.github.io
 
 
 # Jekyll configuration
@@ -42,9 +42,9 @@ titlecase: true
 # Site owner
 owner:
   name: Welkin Fan
-  avatar: bio-photo.jpg
-  bio: "Describe your self."
-  email:
+  avatar: welkin.png
+  bio: "A software engineer from Taiwan."
+  email: welkin.fan@gmail.com
   disqus-shortname:
   twitter: #username
   facebook: #username
