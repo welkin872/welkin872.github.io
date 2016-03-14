@@ -115,6 +115,33 @@ node "redmine" {
 * 還有跑之前記得要產一個Gemfile.local並且把fcgi加進去
 * 最後fcgi要傳變數是要把FcgidInitialEnv RAILS_ENV加在vhost內,這個也搞了我很久
 
+以為到這邊就結束了, 事情並沒有憨人想的這麼簡單, 照上面這樣搞會一直出現403因為vhost裡的AllowOverride根本沒生效, 原因在於httpd.conf預設值為None, 所以必須去修改成為All, 這段還不知道怎麼用puppet去改
+
+{% highlight apache linenos %}
+<Directory "/var/www/html">
+.
+#
+# Possible values for the Options directive are "None", "All",
+# or any combination of:
+#   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+#
+# Note that "MultiViews" must be named *explicitly* --- "Options All"
+# doesn't give it to you.
+#
+# The Options directive is both complicated and important.  Please see
+# http://httpd.apache.org/docs/2.2/mod/core.html#options
+# for more information.
+#
+    Options Indexes FollowSymLinks
+.
+#
+# AllowOverride controls what directives may be placed in .htaccess files.
+# It can be "All", "None", or any combination of the keywords:
+#   Options FileInfo AuthConfig Limit
+#
+    AllowOverride All
+{% endhighlight %}
+
 到這邊總行了吧, 好吧是的, 如果這樣還不行我也要崩潰了, 剩下的就是比較簡單的事情了, 因為我是用RDS所以細節我就不說了, 記得把正確的DB資訊寫到database.yml就可以執行起始DB的動作
 
 {% highlight shell linenos %}
