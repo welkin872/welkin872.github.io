@@ -106,6 +106,15 @@ node "redmine" {
 }
 {% endhighlight %}
 
+完成後執行apply就完成了絕大部分, 咦, 這樣不是很簡單嗎? 不, 一點都不, 上面這個檔案花了我將近一天看了數十篇中外寫的都不一樣的安裝文才拚出來的, 不是我太弱就是這東西肯定有什麼問題, 幾個重點提示一下:
+
+* 使用fcgi就不需要安裝Passenger, 不知道為什麼很多教學兩個都裝的用意是什麼
+* 千萬不要用root跑bundle install, 不然會遇到最後要跑rake的時候一直說找不到mysql2的鬼問題
+* 萬一真的很不幸這樣幹了用`bundle list | tail -n +2 | awk '{print $2}' | xargs gem uninstall`清乾淨重來
+* 承上用apache跑bundle install要加上參數 --path vendor/bundle
+* 還有跑之前記得要產一個Gemfile.local並且把fcgi加進去
+* 最後fcgi要傳變數是要把FcgidInitialEnv RAILS_ENV加在vhost內,這個也搞了我很久
+
 到這邊總行了吧, 好吧是的, 如果這樣還不行我也要崩潰了, 剩下的就是比較簡單的事情了, 因為我是用RDS所以細節我就不說了, 記得把正確的DB資訊寫到database.yml就可以執行起始DB的動作
 
 {% highlight shell linenos %}
