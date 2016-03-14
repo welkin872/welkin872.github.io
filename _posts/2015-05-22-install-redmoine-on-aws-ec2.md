@@ -120,7 +120,7 @@ node "redmine" {
 {% highlight apache linenos %}
 {% raw %}
 <Directory "/var/www/html">
-.
+
 #
 # Possible values for the Options directive are "None", "All",
 # or any combination of:
@@ -134,7 +134,7 @@ node "redmine" {
 # for more information.
 #
     Options Indexes FollowSymLinks
-.
+
 #
 # AllowOverride controls what directives may be placed in .htaccess files.
 # It can be "All", "None", or any combination of the keywords:
