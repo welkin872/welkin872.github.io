@@ -3,7 +3,7 @@ layout: post
 title: "Scheduling EC2 Start/Stop by Data Pipeline + Lambda"
 excerpt: "Scheduling EC2 Start/Stop by Data Pipeline + Lambda."
 tags: [EC2, Lambda, Start, Stop, Data Pipeline]
-comments: false
+comments: true
 ---
 
 有用過AWS的知道, EC2是依照時間收錢的, 所以不用的時候就該關掉, 所以很自然地會覺得應該有個功能是可以設定什麼時間開機什麼時間關機, 但很抱歉, 它沒有!

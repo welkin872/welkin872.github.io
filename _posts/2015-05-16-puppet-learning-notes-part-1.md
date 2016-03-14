@@ -3,7 +3,7 @@ layout: post
 title: "Puppet Learning Notes #1"
 excerpt: "Puppet Learning Notes #1."
 tags: [Puppet]
-comments: false
+comments: true
 ---
 
 ## 認識Puppet ##

@@ -3,7 +3,7 @@ layout: post
 title: "Puppet Learning Notes #3"
 excerpt: "Puppet Learning Notes #3."
 tags: [Puppet]
-comments: false
+comments: true
 ---
 
 ## 安裝Puppet Server

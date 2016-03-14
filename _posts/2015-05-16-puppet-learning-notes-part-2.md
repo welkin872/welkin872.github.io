@@ -3,7 +3,7 @@ layout: post
 title: "Puppet Learning Notes #2"
 excerpt: "Puppet Learning Notes #2."
 tags: [Puppet]
-comments: false
+comments: true
 ---
 
 ## 嘗試不同的 manifests

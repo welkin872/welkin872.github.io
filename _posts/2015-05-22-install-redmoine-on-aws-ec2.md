@@ -3,7 +3,7 @@ layout: post
 title: "Install Redmine on AWS EC2"
 excerpt: "Install Redmine on AWS EC2."
 tags: [EC2, Redmine]
-comments: false
+comments: true
 ---
 
 最近因為~~心血來潮~~工作需要起一個Redmine來做專案管理,順便練習最近學的puppet, 於是就開始了這一路X到底的經驗, 這真是近期遇到最難搞的東西!
