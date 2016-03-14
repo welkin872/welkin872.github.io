@@ -12,6 +12,99 @@ comments: false
 
 接著就是安裝Redmine 3.0.3, 這次安裝採用的方式是Apache+Fcgi, 編輯以下的pp檔
 
+{% highlight puppet linenos %}
+node "redmine" {
+  package { "httpd": ensure => installed }
+  package { "mod_fcgid": ensure => installed }
+  package { "fcgi-devel": ensure => installed }
+  package { "ImageMagick": ensure => installed }
+  package { "ImageMagick-devel": ensure => installed }
+  package { "ruby-devel": ensure => installed }
+  package { "gcc": ensure => installed }
+  package { "mysql-devel": ensure => installed }
+  package { "patch": ensure => installed }
+  package { "bundler": ensure  => installed, provider => "gem" }
+  exec { "download_redmine_release":
+    command => "/usr/bin/wget -q http://www.redmine.org/releases/redmine-3.0.3.tar.gz -O /var/www/redmine-3.0.3.tar.gz",
+    creates => "/var/www/redmine-3.0.3.tar.gz",
+  }
+  exec { "unpack_redmine_release":
+    command => "/bin/tar xzf /var/www/redmine-3.0.3.tar.gz -C /var/www/html",
+    creates => "/var/www/html/redmine-3.0.3",
+    require => Exec["download_redmine_release"]
+  }
+  file { "/var/www/html/redmine-3.0.3/Gemfile.local":
+    ensure => "file",
+    owner => "apache",
+    group => "apache",
+    mode => "664",
+    content => "gem "fcgi"",
+  }
+  exec { "bundle-install":
+    cwd => "/var/www/html/redmine-3.0.3",
+    path => "/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin",
+    command => "bundle install --path vendor/bundle --without development test",
+    user => "apache",
+    logoutput => true,
+  }
+  file { "/var/www/html/redmine-3.0.3":
+    ensure => directory,
+    owner => "apache",
+    group => "apache",
+    recurse => true,
+  }
+  file { "/var/www/html/redmine-3.0.3/public/dispatch.fcgi":
+    ensure => "file",
+    owner => "apache",
+    group => "apache",
+    mode => "775",
+    source => "/var/www/html/redmine-3.0.3/public/dispatch.fcgi.example",
+  }
+  file { "/var/www/html/redmine-3.0.3/public/.htaccess":
+    ensure => "file",
+    owner => "apache",
+    group => "apache",
+    mode => "664",
+    source => "/var/www/html/redmine-3.0.3/public/htaccess.fcgi.example",
+  }
+  file { "/var/www/html/redmine-3.0.3/config/database.yml":
+    ensure => "file",
+    owner => "apache",
+    group => "apache",
+    mode => "664",
+    content => "production:
+  adapter: mysql2
+  database: redmine
+  host: #MYSQL_FQDN#
+  username: #MYSQL_USERNAME#
+  password: #MYSQL_PASSWORD#
+  encoding: utf8
+"
+  }
+  file { "/etc/httpd/conf.d/redmine.conf":
+    ensure => "file",
+    owner  => "root",
+    group  => "root",
+    mode   => "644",
+    content => "<VirtualHost *:80>
+  ServerName #SERVER_FQDN#
+  ServerAdmin #SERVER_ADMIN#
+  DocumentRoot /var/www/html/redmine-3.0.3/public/
+  ErrorLog logs/redmine_error_log
+  MaxRequestLen 52428800
+  FcgidInitialEnv RAILS_ENV "production"
+
+  <Directory "/var/www/redmine-3.0.3/public/">
+    Options Indexes ExecCGI FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+</VirtualHost>"
+  }
+  service { "httpd": ensure=> running, enable=> true }
+}
+{% endhighlight %}
 
 到這邊總行了吧, 好吧是的, 如果這樣還不行我也要崩潰了, 剩下的就是比較簡單的事情了, 因為我是用RDS所以細節我就不說了, 記得把正確的DB資訊寫到database.yml就可以執行起始DB的動作
 
