@@ -6,7 +6,7 @@ tags: [EC2, Redmine]
 comments: false
 ---
 
-最近因為工作需要(心血來潮)起一個Redmine來做專案管理,順便練習最近學的puppet, 於是就開始了這一路X到底的經驗, 這真是近期遇到最難搞的東西!
+最近因為~~心血來潮~~工作需要起一個Redmine來做專案管理,順便練習最近學的puppet, 於是就開始了這一路X到底的經驗, 這真是近期遇到最難搞的東西!
 
 不廢話趕快開始不然天都要黑了,首先我選用的是Amazon Linux AMI 2015.03 (HVM)作為基本的OS, 開機後可參考先前的文章安裝puppet agent, 這邊就不多描述.
 
@@ -110,7 +110,7 @@ node "redmine" {
 
 * 使用fcgi就不需要安裝Passenger, 不知道為什麼很多教學兩個都裝的用意是什麼
 * 千萬不要用root跑bundle install, 不然會遇到最後要跑rake的時候一直說找不到mysql2的鬼問題
-* 萬一真的很不幸這樣幹了用`bundle list | tail -n +2 | awk '{print $2}' | xargs gem uninstall`清乾淨重來
+* 萬一真的很不幸這樣幹了用bundle list | tail -n +2 | awk '{print $2}' | xargs gem uninstall清乾淨重來
 * 承上用apache跑bundle install要加上參數 --path vendor/bundle
 * 還有跑之前記得要產一個Gemfile.local並且把fcgi加進去
 * 最後fcgi要傳變數是要把FcgidInitialEnv RAILS_ENV加在vhost內,這個也搞了我很久
