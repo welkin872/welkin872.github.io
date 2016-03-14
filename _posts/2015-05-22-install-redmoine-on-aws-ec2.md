@@ -117,7 +117,7 @@ node "redmine" {
 
 以為到這邊就結束了, 事情並沒有憨人想的這麼簡單, 照上面這樣搞會一直出現403因為vhost裡的AllowOverride根本沒生效, 原因在於httpd.conf預設值為None, 所以必須去修改成為All, 這段還不知道怎麼用puppet去改
 
-{% highlight ApacheConf linenos %}
+{% highlight yaml linenos %}
 <Directory "/var/www/html">
 
 #
