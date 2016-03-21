@@ -29,6 +29,9 @@ image:
 
 * [JSON Editor Online](http://www.jsoneditoronline.org/ "http://www.jsoneditoronline.org/")
 
+### Regular Expression
+* [Regular expression visualizer](https://regexper.com "https://regexper.com")
+
 ### Diagram
 
 * [draw.io](https://www.draw.io/ "https://www.draw.io/") - draw.io is free online diagram software for making flow charts, process diagrams, org charts, UML, ER and network diagrams.
@@ -37,6 +40,8 @@ image:
 ## Converter
 
 * [Epoch & Unix Timestamp Converstion Tools](http://www.epochconverter.com/ "http://www.epochconverter.com/")
+* [Unicode Converter](http://code.cside.com/3rdpage/us/unicode/converter.html "http://code.cside.com/3rdpage/us/unicode/converter.html") - Decimal, Hexadecimal Character Codes in HTML Unicode
+* [Free online file conversion](http://www.zamzar.com/ "http://www.zamzar.com/") - Zamzar supports over 1200 different conversions.
 
 ## Network 
 
