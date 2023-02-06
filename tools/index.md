@@ -42,6 +42,7 @@ image:
 * [Epoch & Unix Timestamp Converstion Tools](http://www.epochconverter.com/ "http://www.epochconverter.com/")
 * [Unicode Converter](http://code.cside.com/3rdpage/us/unicode/converter.html "http://code.cside.com/3rdpage/us/unicode/converter.html") - Decimal, Hexadecimal Character Codes in HTML Unicode
 * [Free online file conversion](http://www.zamzar.com/ "http://www.zamzar.com/") - Zamzar supports over 1200 different conversions.
+* [Online PNG and JPEG compression](https://www.websiteplanet.com/webtools/imagecompressor/ "https://www.websiteplanet.com/webtools/imagecompressor/") - Compress your PNG/JPG files by up to 80% and retain full transparency. (Recommended by Amelia)
 
 ## Network 
 
